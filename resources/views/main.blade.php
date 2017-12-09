@@ -52,7 +52,7 @@
         var cookieLatitude = Cookies.get('latitude');
         var cookieLongitude = Cookies.get('longitude');
 
-        if(cookieLatitude != null && cookieLongitude != null) {
+        if (cookieLatitude != null && cookieLongitude != null) {
             initLatitude = cookieLatitude;
             initLongitude = cookieLongitude;
 
@@ -68,19 +68,19 @@
         function onSuccessGeolocation(position) {
             var location = new naver.maps.LatLng(position.coords.latitude,
                 position.coords.longitude);
-            var marker = new naver.maps.Marker({
-                map: map,
-                position: location
-            });
+            // var marker = new naver.maps.Marker({
+            //     map: map,
+            //     position: location
+            // });
 
             map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
             map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
 
-            infowindow.setContent('<div style="padding:20px;">' +
-                'latitude: ' + location.lat() + '<br />' +
-                'longitude: ' + location.lng() + '</div>');
-
-            infowindow.open(map, location);
+            // infowindow.setContent('<div style="padding:20px;">' +
+            //     'latitude: ' + location.lat() + '<br />' +
+            //     'longitude: ' + location.lng() + '</div>');
+            //
+            // infowindow.open(map, location);
         }
 
         function onErrorGeolocation() {
@@ -100,6 +100,53 @@
 
                 infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5>' + "latitude: " + center.lat() + "<br />longitude: " + center.lng() + '</div>');
                 infowindow.open(map, center);
+            }
+        });
+
+        $.get({
+            url: '/trashcan/get',
+            dataType: 'json',
+            success: function (data) {
+                data.forEach(function (item, index, arr) {
+                    var marker = new naver.maps.Marker({
+                        map: map,
+                        position: new naver.maps.LatLng(item.latitude, item.longitude)
+                    });
+
+                    var contentString = [
+                        '<div style="padding: 20px 20px 0 20px;">',
+                        '   <h5>서울특별시청</h5>',
+                        '   <p>',
+                        '       내부 온도 : ' + item.in,
+                        '       <br>외부 온도 : ' + item.out,
+                        '       <br>습도 : ' + item.humidity,
+                        '       <br>초음파 : ' + item.ultrawave,
+                        '       <br>무게 : ' + item.weight,
+                        '   </p>',
+                        '</div>'
+                    ].join('');
+
+                    var infowindow = new naver.maps.InfoWindow({
+                        content: contentString,
+                        padding: 30,
+                        // maxWidth: 200,
+                        // backgroundColor: "#fff",
+                        // borderColor: "#ddd",
+                        // borderWidth: 1,
+                        // anchorSize: new naver.maps.Size(30, 30),
+                        // anchorSkew: true,
+                        // anchorColor: "#eee",
+                        // pixelOffset: new naver.maps.Point(20, -10)
+                    });
+
+                    naver.maps.Event.addListener(marker, "click", function (e) {
+                        if (infowindow.getMap()) {
+                            infowindow.close();
+                        } else {
+                            infowindow.open(map, marker);
+                        }
+                    });
+                })
             }
         });
     </script>
