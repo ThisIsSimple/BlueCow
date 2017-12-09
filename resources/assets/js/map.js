@@ -11,7 +11,6 @@ $(function() {
     $(window).on("load", function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(onSuccessGetLocation, onErrorGetLocation);
-        } else {
         }
     });
 });
