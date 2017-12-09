@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class TrashcanController extends Controller
 {
+    public function index()
+    {
+        return view('trashcan');
+    }
+
     public function get()
     {
         $array = [];
@@ -42,5 +47,41 @@ class TrashcanController extends Controller
     public function add()
     {
         return view('trashcan_add');
+    }
+
+    public function db_add(Request $request)
+    {
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+        $address = $request->input('address');
+        $height = $request->input('height');
+        $area = $request->input('area');
+        $capacity = $request->input('capacity');
+        $pid = $request->input('pid');
+        $name = $request->input('name');
+
+        if(empty($name)) {
+            $name = str_random(30);
+        }
+
+        $addTrashcan = \App\Trashcan::create([
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+            'address' => $address,
+            'height' => $height,
+            'area' => $area,
+            'capacity' => $capacity,
+            'pid' => $pid
+        ]);
+
+        $addTrash = \App\Trashcan::find($addTrashcan->id)->trashs()->create([
+            'in' => 0,
+            'out' => 0,
+            'humidity' => 0,
+            'ultrawave' => 0,
+            'weight' => 0
+        ]);
+
+        return redirect('/trashcan/add');
     }
 }

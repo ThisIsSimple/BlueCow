@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trashcan extends Model
 {
-    protected $fillable = ['height', 'area', 'capacity', 'address', 'latitude', 'longitude'];
+    protected $fillable = ['height', 'area', 'capacity', 'address', 'latitude', 'longitude', 'pid', 'name'];
 
     public $timestamps = true;
 

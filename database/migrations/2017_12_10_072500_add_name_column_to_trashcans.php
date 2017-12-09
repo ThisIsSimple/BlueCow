@@ -14,7 +14,7 @@ class AddNameColumnToTrashcans extends Migration
     public function up()
     {
         Schema::table('trashcans', function (Blueprint $table) {
-            $table->string('name');
+            $table->string('name')->default('쓰레기통');
         });
     }
 
@@ -26,7 +26,7 @@ class AddNameColumnToTrashcans extends Migration
     public function down()
     {
         Schema::table('trashcans', function (Blueprint $table) {
-            $table->removeColumn('pid');
+            $table->removeColumn('name');
         });
     }
 }

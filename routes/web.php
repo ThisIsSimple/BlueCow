@@ -15,7 +15,10 @@ Route::get('/', 'MainController@index');
 
 Route::get('/input', 'TrashController@input');
 
+Route::get('/trashcan', 'TrashcanController@index');
+
 Route::get('/trashcan/get', 'TrashcanController@get');
 Route::get('/trashcan/add', 'TrashcanController@add');
+Route::post('/trashcan/add', 'TrashcanController@db_add');
 
 Route::get('/login', 'LoginController@index');

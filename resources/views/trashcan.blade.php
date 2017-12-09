@@ -11,7 +11,6 @@
         <div class="col-12 col-md-3 ">
             <div id="tarshcan-info" class="card ">
                 <form class="form-group" method="post" action="/trashcan/add">
-                    {{ csrf_field() }}
                     <div class="card-header">
                         <div class="form-group">
                             <input type="text" class="form-control" name="name" placeholder="이름">
