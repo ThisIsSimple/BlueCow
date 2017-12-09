@@ -47,7 +47,7 @@
         var infowindow = new naver.maps.InfoWindow();
 
         var initLatitude = 37.5666805;
-        var initLongitude = 126.9784147;
+        var initLongitude = 121.9784147;
 
         var cookieLatitude = Cookies.get('latitude');
         var cookieLongitude = Cookies.get('longitude');
@@ -55,8 +55,6 @@
         if (cookieLatitude != null && cookieLongitude != null) {
             initLatitude = cookieLatitude;
             initLongitude = cookieLongitude;
-
-
         }
 
         var map = new naver.maps.Map('map', {
@@ -68,19 +66,8 @@
         function onSuccessGeolocation(position) {
             var location = new naver.maps.LatLng(position.coords.latitude,
                 position.coords.longitude);
-            // var marker = new naver.maps.Marker({
-            //     map: map,
-            //     position: location
-            // });
-
             map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
             map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
-
-            // infowindow.setContent('<div style="padding:20px;">' +
-            //     'latitude: ' + location.lat() + '<br />' +
-            //     'longitude: ' + location.lng() + '</div>');
-            //
-            // infowindow.open(map, location);
         }
 
         function onErrorGeolocation() {
@@ -115,7 +102,7 @@
 
                     var contentString = [
                         '<div style="padding: 20px 20px 0 20px;">',
-                        '   <h5>서울특별시청</h5>',
+                        '   <h5>'+item.address+'</h5>',
                         '   <p>',
                         '       내부 온도 : ' + item.in,
                         '       <br>외부 온도 : ' + item.out,
