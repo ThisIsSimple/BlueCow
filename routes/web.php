@@ -16,5 +16,6 @@ Route::get('/', 'MainController@index');
 Route::get('/input', 'TrashController@input');
 
 Route::get('/trashcan/get', 'TrashcanController@get');
+Route::get('/trashcan/add', 'TrashcanController@add');
 
 Route::get('/login', 'LoginController@index');

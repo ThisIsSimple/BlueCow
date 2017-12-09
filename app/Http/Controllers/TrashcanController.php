@@ -38,4 +38,9 @@ class TrashcanController extends Controller
 
         return $array;
     }
+
+    public function add()
+    {
+        return view('trashcan_add');
+    }
 }

@@ -2,39 +2,19 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12 col-md-3">
-            <div class="card">
-                <div class="card-header">
-                    Featured
-                </div>
-                <div class="card-body">
-                    <div class="list-group ">
-                        <a href="# " class="list-group-item list-group-item-action active ">
-                            Cras justo odio
-                        </a>
-                        <a href="# " class="list-group-item list-group-item-action ">Dapibus ac facilisis in</a>
-                        <a href="# " class="list-group-item list-group-item-action ">Morbi leo risus</a>
-                        <a href="# " class="list-group-item list-group-item-action ">Porta ac consectetur ac</a>
-                        <a href="# " class="list-group-item list-group-item-action disabled ">Vestibulum at eros</a>
-                    </div>
-                </div>
-                <div class="card-footer text-muted ">
-                    <a href="# ">Logout</a>
-                </div>
-            </div>
-        </div>
+        @include('listgroup')
         <div class="col-12 col-md-6 ">
-            <div class="card ">
+            <div class="card mb-3">
                 <div id="map" style="width:100%;height:400px;"></div>
             </div>
         </div>
         <div class="col-12 col-md-3 ">
-            <div class="card ">
+            <div id="tarshcan-info" class="card ">
                 <div class="card-header">
-                    asd
+                    <h3></h3>
                 </div>
                 <div class="card-body">
-                    asdf
+
                 </div>
             </div>
         </div>
@@ -44,6 +24,8 @@
 @section('script')
     <script src="{{ asset('js/map.js') }}"></script>
     <script>
+        var trashcans = [];
+
         var infowindow = new naver.maps.InfoWindow();
 
         var initLatitude = 37.5666805;
@@ -100,6 +82,25 @@
                         position: new naver.maps.LatLng(item.latitude, item.longitude)
                     });
 
+                    console.log(marker.map);
+
+                    var trashcan_info = Array;
+                    trashcan_info['id'] = item.id;
+                    trashcan_info['in'] = item.in;
+                    trashcan_info['out'] = item.out;
+                    trashcan_info['humidity'] = item.humidity;
+                    trashcan_info['ultrawave'] = item.ultrawave;
+                    trashcan_info['weight'] = item.weight;
+
+                    trashcan_info['height'] = item.height;
+                    trashcan_info['area'] = item.area;
+                    trashcan_info['capacity'] = item.capacity;
+                    trashcan_info['address'] = item.address;
+                    trashcan_info['latitude'] = item.latitude;
+                    trashcan_info['longitude'] = item.longitude;
+
+                    trashcans.push(trashcan_info);
+
                     var contentString = [
                         '<div style="padding: 20px 20px 0 20px;">',
                         '   <h5>'+item.address+'</h5>',
@@ -115,18 +116,18 @@
 
                     var infowindow = new naver.maps.InfoWindow({
                         content: contentString,
-                        padding: 30,
-                        // maxWidth: 200,
-                        // backgroundColor: "#fff",
-                        // borderColor: "#ddd",
-                        // borderWidth: 1,
-                        // anchorSize: new naver.maps.Size(30, 30),
-                        // anchorSkew: true,
-                        // anchorColor: "#eee",
-                        // pixelOffset: new naver.maps.Point(20, -10)
                     });
 
                     naver.maps.Event.addListener(marker, "click", function (e) {
+
+                        trashcans.forEach(function(item, index, arr) {
+                            if(item.latitude === e.coord.x) {
+                                alert(item.latitude);
+                            }
+                        });
+
+                        console.log(e);
+
                         if (infowindow.getMap()) {
                             infowindow.close();
                         } else {

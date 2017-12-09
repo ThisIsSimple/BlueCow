@@ -50,11 +50,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js " integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ " crossorigin="anonymous "></script>
 
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=EY4l8Gflyudbw26AcaD2&submodules=geocoder"></script>
-<script>
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
-</script>
 @yield('script')
 </body>
 

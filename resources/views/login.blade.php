@@ -20,10 +20,10 @@
     <script>
         window.fbAsyncInit = function() {
             FB.init({
-                appId      : '{your-app-id}',
+                appId      : '2011535379061177',
                 cookie     : true,
                 xfbml      : true,
-                version    : '{latest-api-version}'
+                version    : 'v2.11'
             });
 
             FB.AppEvents.logPageView();
@@ -37,5 +37,15 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        }
     </script>
 @endsection
