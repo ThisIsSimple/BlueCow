@@ -12,4 +12,5 @@ var mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/normalize.scss', 'public/css');
+    .js('resources/assets/js/map.js', 'public/js')
+    .sass('resources/assets/sass/normalize.scss', 'public/css');

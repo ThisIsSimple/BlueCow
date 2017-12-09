@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', 'MainController@index');
 
 Route::get('/input', 'TrashController@input');

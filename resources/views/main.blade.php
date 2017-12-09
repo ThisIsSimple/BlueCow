@@ -42,14 +42,28 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('js/map.js') }}"></script>
     <script>
+        var infowindow = new naver.maps.InfoWindow();
+
+        var initLatitude = 37.5666805;
+        var initLongitude = 126.9784147;
+
+        var cookieLatitude = Cookies.get('latitude');
+        var cookieLongitude = Cookies.get('longitude');
+
+        if(cookieLatitude != null && cookieLongitude != null) {
+            initLatitude = cookieLatitude;
+            initLongitude = cookieLongitude;
+
+
+        }
+
         var map = new naver.maps.Map('map', {
-            center: new naver.maps.LatLng(37.5666805, 126.9784147),
+            center: new naver.maps.LatLng(initLatitude, initLongitude),
             zoom: 10,
             mapTypeId: naver.maps.MapTypeId.NORMAL
         });
-
-        var infowindow = new naver.maps.InfoWindow();
 
         function onSuccessGeolocation(position) {
             var location = new naver.maps.LatLng(position.coords.latitude,

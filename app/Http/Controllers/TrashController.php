@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class TrashController extends Controller
 {
-    public function input(Request $request) {
+    public function input(Request $request)
+    {
         $trashcan_id = $request->input('id');
         $in = $request->input('in');
         $humidity = $request->input('humi');
