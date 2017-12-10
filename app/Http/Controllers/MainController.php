@@ -11,9 +11,27 @@ class MainController extends Controller
     {
         $trashcans = \App\Trashcan::class;
 
-        $sido = $request->cookie("sido");
-        $sigugun = $request->cookie("sigugun");
-        $dongmyun = $request->cookie("dongmyun");
+//        $sido = $_COOKIE['sido']?$_COOKIE['sido']:"";
+//        $sigugun = $_COOKIE['sigugun']?$_COOKIE['sigugun']:"";
+//        $dongmyun = $_COOKIE['dongmyun']?$_COOKIE['dongmyun']:"";
+
+        if(!empty($_COOKIE['sido'])) {
+            $sido = $_COOKIE['sido'];
+        } else {
+            $sido = "";
+        }
+
+        if(!empty($_COOKIE['sigugun'])) {
+            $sigugun = $_COOKIE['sigugun'];
+        } else {
+            $sigugun = "";
+        }
+
+        if(!empty($_COOKIE['dongmyun'])) {
+            $dongmyun = $_COOKIE['dongmyun'];
+        } else {
+            $dongmyun = "";
+        }
 
         return view('main', [
             'trashcans' => $trashcans::all(),
