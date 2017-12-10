@@ -1,4 +1,4 @@
-<div class="col-12 col-md-3">
+<div class="col-12 col-md-3 d-none d-sm-none d-md-block">
     <div class="card mb-3">
         <div class="card-header">
             Featured

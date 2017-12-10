@@ -22,21 +22,41 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">메인</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Trash</a>
+                    <a class="nav-link" href="#">쓰레기통 관리</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Elevator</a>
+                    <a class="nav-link" href="#">쓰레기통 추가</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Contact</a>
+                    <a class="nav-link" href="#">통계</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">설정</a>
                 </li>
             </ul>
         </div>
+
+        {{--<div class="collapse navbar-collapse" id="navbarSupportedContent">--}}
+            {{--<ul class="nav nav-pills">--}}
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link active" href="#">Home</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="#">Trash</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="#">Elevator</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link disabled" href="#">Contact</a>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</div>--}}
     </div>
 </nav>
 
