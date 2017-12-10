@@ -24,19 +24,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">메인</a>
+                    <a class="nav-link" href="/">메인</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">쓰레기통 관리</a>
+                    <a class="nav-link" href="/trashcan">쓰레기통 관리</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">쓰레기통 추가</a>
+                    <a class="nav-link" href="/trashcan/add">쓰레기통 추가</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">통계</a>
+                    <a class="nav-link" href="/statistic">통계</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">설정</a>
+                    <a class="nav-link" href="/setting">설정</a>
                 </li>
             </ul>
         </div>

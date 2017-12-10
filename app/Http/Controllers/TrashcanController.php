@@ -17,38 +17,42 @@ class TrashcanController extends Controller
 
     public function get(Request $request)
     {
-        if($request->exists('id')) {
-            $trashcan = \App\Trashcan::where('id', $request->input('id'))->get();
-            return $trashcan;
+        if($request->exists('n')) {
+            return \App\Trashcan::take(10)->get();
         } else {
-            $array = [];
+            if($request->exists('id')) {
+                $trashcan = \App\Trashcan::where('id', $request->input('id'))->get();
+                return $trashcan;
+            } else {
+                $array = [];
 
-            $trashcans = \App\Trashcan::all();
+                $trashcans = \App\Trashcan::all();
 
-            foreach ($trashcans as $trashcan) {
-                $latestTrash = \App\Trash::where('trashcan_id', $trashcan->id)->orderBy('created_at', 'desc')->take(1)->get();
+                foreach ($trashcans as $trashcan) {
+                    $latestTrash = \App\Trash::where('trashcan_id', $trashcan->id)->orderBy('created_at', 'desc')->take(1)->get();
 
-                $item = [
-                    'trashcan_id' => $trashcan->id,
-                    'height' => $trashcan->height,
-                    'area' => $trashcan->area,
-                    'capacity' => $trashcan->capacity,
-                    'address' => $trashcan->address,
-                    'latitude' => $trashcan->latitude,
-                    'longitude' => $trashcan->longitude,
+                    $item = [
+                        'trashcan_id' => $trashcan->id,
+                        'height' => $trashcan->height,
+                        'area' => $trashcan->area,
+                        'capacity' => $trashcan->capacity,
+                        'address' => $trashcan->address,
+                        'latitude' => $trashcan->latitude,
+                        'longitude' => $trashcan->longitude,
 
-                    'trash_id' => $latestTrash[0]->id,
-                    'in' => $latestTrash[0]->in,
-                    'out' => $latestTrash[0]->out,
-                    'humidity' => $latestTrash[0]->humidity,
-                    'ultrawave' => $latestTrash[0]->ultrawave,
-                    'weight' => $latestTrash[0]->weight,
-                ];
+                        'trash_id' => $latestTrash[0]->id,
+                        'in' => $latestTrash[0]->in,
+                        'out' => $latestTrash[0]->out,
+                        'humidity' => $latestTrash[0]->humidity,
+                        'ultrawave' => $latestTrash[0]->ultrawave,
+                        'weight' => $latestTrash[0]->weight,
+                    ];
 
-                array_push($array, $item);
+                    array_push($array, $item);
+                }
+
+                return $array;
             }
-
-            return $array;
         }
     }
 

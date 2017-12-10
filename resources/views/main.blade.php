@@ -4,6 +4,9 @@
     <div class="row">
         @include('listgroup')
         <div class="col-12 col-md-6 ">
+            <div class="alert alert-warning" role="alert">
+                {{ $request->cookie('sido')?$_COOKIE['sido']:"시/도" }} {{ $request->cookie('sigugun')?$_COOKIE['sigugun']:"시/구/군" }} {{ $request->cookie('dongmyun')?$_COOKIE['dongmyun']:"동/문" }}에서 {{ $trashcanNear }}개의 쓰레기통을 찾았습니다.
+            </div>
             <div class="form-group">
                 <input type="text" id="search" name="search" style="border: none;" class="form-control"
                        placeholder="집 주변 쓰레기통을 찾아 보세요!">
@@ -78,7 +81,7 @@
             } else {
                 var center = map.getCenter();
 
-                infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5>' + "latitude: " + center.lat() + "<br />longitude: " + center.lng() + '</div>');
+                infowindow.setContent('<div style="font-size: 10px; padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5>' + "latitude: " + center.lat() + "<br />longitude: " + center.lng() + '</div>');
                 infowindow.open(map, center);
             }
         });
@@ -92,8 +95,6 @@
                         map: map,
                         position: new naver.maps.LatLng(item.latitude, item.longitude)
                     });
-
-                    console.log(marker.map);
 
                     var trashcan_info = Array;
                     trashcan_info['id'] = item.id;
@@ -113,8 +114,8 @@
                     trashcans.push(trashcan_info);
 
                     var contentString = [
-                        '<div style="padding: 20px 20px 0 20px;">',
-                        '   <h5>' + item.address + '</h5>',
+                        '<div style="max-width: 150px; overflow: hidden; font-size: 10px; padding: 15px 15px 0 15px;">',
+                        '   <h6 style="max-width: 120px; max-height: 40px; overflow: hidden">' + item.address + '</h6>',
                         '   <p>',
                         '       내부 온도 : ' + item.in,
                         '       <br>외부 온도 : ' + item.out,
@@ -164,83 +165,6 @@
             }
         });
 
-        // search by tm128 coordinate
-        function searchCoordinateToAddress(latlng) {
-            var tm128 = naver.maps.TransCoord.fromLatLngToTM128(latlng);
-
-            infoWindow.close();
-
-            naver.maps.Service.reverseGeocode({
-                location: tm128,
-                coordType: naver.maps.Service.CoordType.TM128
-            }, function (status, response) {
-                if (status === naver.maps.Service.Status.ERROR) {
-                    return alert('Something Wrong!');
-                }
-
-                var items = response.result.items,
-                    htmlAddresses = [];
-
-                for (var i = 0, ii = items.length, item, addrType; i < ii; i++) {
-                    item = items[i];
-                    addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]';
-
-                    htmlAddresses.push((i + 1) + '. ' + addrType + ' ' + item.address);
-                    htmlAddresses.push('&nbsp&nbsp&nbsp -> ' + item.point.x + ',' + item.point.y);
-                }
-
-                infoWindow.setContent([
-                    '<div style="padding:10px;min-width:200px;line-height:150%;">',
-                    '<h4 style="margin-top:5px;">검색 좌표 : ' + response.result.userquery + '</h4><br />',
-                    htmlAddresses.join('<br />'),
-                    '</div>'
-                ].join('\n'));
-
-                infoWindow.open(map, latlng);
-            });
-        }
-
-        // result by latlng coordinate
-        function searchAddressToCoordinate(address) {
-            naver.maps.Service.geocode({
-                address: address
-            }, function (status, response) {
-                if (status === naver.maps.Service.Status.ERROR) {
-                    return alert('Something Wrong!');
-                }
-
-                var item = response.result.items[0],
-                    addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]',
-                    point = new naver.maps.Point(item.point.x, item.point.y);
-
-                infoWindow.setContent([
-                    '<div style="padding:10px;min-width:200px;line-height:150%;">',
-                    '<h4 style="margin-top:5px;">검색 주소 : ' + response.result.userquery + '</h4><br />',
-                    addrType + ' ' + item.address + '<br />',
-                    '&nbsp&nbsp&nbsp -> ' + point.x + ',' + point.y,
-                    '</div>'
-                ].join('\n'));
-
-
-                map.setCenter(point);
-                infoWindow.open(map, point);
-            });
-        }
-
-        function initGeocoder() {
-            map.addListener('click', function (e) {
-                searchCoordinateToAddress(e.coord);
-            });
-
-            $('#address').on('keydown', function (e) {
-                var keyCode = e.which;
-
-                if (keyCode === 13) { // Enter Key
-                    searchAddressToCoordinate($('#address').val());
-                }
-            });
-        }
-
-        naver.maps.onJSContentLoaded = initGeocoder;
+        // naver.maps.onJSContentLoaded = initGeocoder;
     </script>
 @endsection

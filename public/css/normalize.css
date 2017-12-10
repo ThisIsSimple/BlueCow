@@ -10,6 +10,24 @@ body {
   background: linear-gradient(to bottom, #cbe3fe 0%, #e8d9fe 100%);
 }
 
+.fa-gradient {
+  font-size: 20px;
+  position: relative;
+  top: 0.5px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f00), to(#333));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fa-center {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  font-size: 40px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
 .navbar {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -48,5 +66,19 @@ body {
 
 .nav-pills .nav-item .nav-link.active {
   border-radius: 15px;
+}
+
+.list-group {
+  border: 0;
+}
+
+.list-group-item {
+  border: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.list-group-item:hover {
+  background-color: #fff;
 }
 

@@ -69,6 +69,7 @@
     <script>
         $(function () {
             var map = new naver.maps.Map('map', {
+                center: naver.maps.LatLng(Cookies.get('latitude'), Cookies.get('longitude')),
                 zoom: 10,
                 mapTypeId: naver.maps.MapTypeId.NORMAL
             });
@@ -97,6 +98,7 @@
                 var position = new naver.maps.LatLng(lat, lng);
 
                 map.setCenter(position);
+                map.setZoom(8);
 
                 $('input[name=latitude]').val(lat);
                 $('input[name=longitude]').val(lng);
