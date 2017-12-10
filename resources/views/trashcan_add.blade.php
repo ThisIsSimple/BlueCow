@@ -4,6 +4,17 @@
     <div class="row">
         @include('listgroup')
         <div class="col-12 col-md-6 ">
+            @if($status === 'success')
+                <div class="alert alert-success" role="alert">
+                    성공적으로 등록되었습니다!
+                </div>
+            @else
+                <div class="alert alert-success" role="alert">
+                    자신만의 쓰레기통을 등록하세요!
+                </div>
+            @endif
+            <input type="text" id="search" name="search" style="border: none;" class="form-control mb-3"
+                   placeholder="집 주변 쓰레기통을 찾아 보세요!">
             <div class="card mb-3">
                 <div id="map" style="width:100%;height:400px;"></div>
             </div>
@@ -116,5 +127,30 @@
         }
 
         naver.maps.onJSContentLoaded = initGeocoder;
+
+        // 주소 검색
+        function searchAddressToCoordinate(address) {
+            naver.maps.Service.geocode({
+                address: address
+            }, function (status, response) {
+                if (status === naver.maps.Service.Status.ERROR) {
+                    return alert('Something Wrong!');
+                }
+
+                var item = response.result.items[0],
+                    addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]',
+                    point = new naver.maps.Point(item.point.x, item.point.y);
+
+                map.setCenter(point);
+            });
+        }
+
+        $('#search').on('keydown', function (e) {
+            var keyCode = e.which;
+
+            if (keyCode === 13) { // Enter Key
+                searchAddressToCoordinate($('#search').val());
+            }
+        });
     </script>
 @endsection

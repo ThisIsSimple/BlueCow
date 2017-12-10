@@ -56,9 +56,17 @@ class TrashcanController extends Controller
         }
     }
 
-    public function add()
+    public function add(Request $request)
     {
-        return view('trashcan_add');
+        if(empty($request->input("status"))) {
+            $status = "";
+        } else {
+            $status = $request->input('status');
+        }
+
+        return view('trashcan_add', [
+            'status' => $status
+        ]);
     }
 
     public function db_add(Request $request)
@@ -95,7 +103,7 @@ class TrashcanController extends Controller
             'weight' => 0
         ]);
 
-        return redirect('/trashcan/add');
+        return redirect('/trashcan/add?status=success');
     }
 
     public function db_update(Request $request)

@@ -97,17 +97,7 @@
                     addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]',
                     point = new naver.maps.Point(item.point.x, item.point.y);
 
-                // infoWindow.setContent([
-                //     '<div style="padding:10px;min-width:200px;line-height:150%;">',
-                //     '<h4 style="margin-top:5px;">검색 주소 : '+ response.result.userquery +'</h4><br />',
-                //     addrType +' '+ item.address +'<br />',
-                //     '&nbsp&nbsp&nbsp -> '+ point.x +','+ point.y,
-                //     '</div>'
-                // ].join('\n'));
-
-
                 map.setCenter(point);
-                // infoWindow.open(map, point);
             });
         }
 
@@ -181,8 +171,6 @@
         });
 
         $('#search').on('keydown', function (e) {
-            console.log(e.which);
-
             var keyCode = e.which;
 
             if (keyCode === 13) { // Enter Key

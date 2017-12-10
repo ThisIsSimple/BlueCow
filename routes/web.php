@@ -26,3 +26,5 @@ Route::get('/trashcan/delete', 'TrashcanController@db_delete');
 Route::get('/statistic', 'StatisticController@index');
 
 Route::get('/login', 'LoginController@index');
+
+Route::get('/statistic', 'AdminController@index');
