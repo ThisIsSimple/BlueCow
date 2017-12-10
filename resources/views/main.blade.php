@@ -5,7 +5,7 @@
         @include('listgroup')
         <div class="col-12 col-md-6 ">
             <div class="alert alert-warning" role="alert">
-                {{ $request->cookie('sido')?$_COOKIE['sido']:"시/도" }} {{ $request->cookie('sigugun')?$_COOKIE['sigugun']:"시/구/군" }} {{ $request->cookie('dongmyun')?$_COOKIE['dongmyun']:"동/문" }}에서 {{ $trashcanNear }}개의 쓰레기통을 찾았습니다.
+                <span id="sido"></span> <span id="sigugun"></span> <span id="dongmyun"></span>에서 {{ $trashcanNear }}개의 쓰레기통을 찾았습니다.
             </div>
             <div class="form-group">
                 <input type="text" id="search" name="search" style="border: none;" class="form-control"
@@ -30,7 +30,6 @@
 
 @section('script')
     <script src="{{ asset('js/map.js') }}"></script>
-    {{--<script src="{{ asset('js/main.js') }}"></script>--}}
     <script>
         var map = new naver.maps.Map("map", {
             center: new naver.maps.LatLng(37.3595316, 127.1052133),
@@ -62,8 +61,8 @@
         function onSuccessGeolocation(position) {
             var location = new naver.maps.LatLng(position.coords.latitude,
                 position.coords.longitude);
-            // map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
-            // map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
+            map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+            map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
         }
 
         function onErrorGeolocation() {
@@ -85,6 +84,32 @@
                 infowindow.open(map, center);
             }
         });
+
+        function searchAddressToCoordinate(address) {
+            naver.maps.Service.geocode({
+                address: address
+            }, function(status, response) {
+                if (status === naver.maps.Service.Status.ERROR) {
+                    return alert('Something Wrong!');
+                }
+
+                var item = response.result.items[0],
+                    addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]',
+                    point = new naver.maps.Point(item.point.x, item.point.y);
+
+                infoWindow.setContent([
+                    '<div style="padding:10px;min-width:200px;line-height:150%;">',
+                    '<h4 style="margin-top:5px;">검색 주소 : '+ response.result.userquery +'</h4><br />',
+                    addrType +' '+ item.address +'<br />',
+                    '&nbsp&nbsp&nbsp -> '+ point.x +','+ point.y,
+                    '</div>'
+                ].join('\n'));
+
+
+                map.setCenter(point);
+                infoWindow.open(map, point);
+            });
+        }
 
         $.get({
             url: '/trashcan/get',
@@ -166,5 +191,9 @@
         });
 
         // naver.maps.onJSContentLoaded = initGeocoder;
+
+        $('#sido').html(Cookies.get("sido"));
+        $('#sigugun').html(Cookies.get("sigugun"));
+        $('#dongmyun').html(Cookies.get("dongmyun"));
     </script>
 @endsection

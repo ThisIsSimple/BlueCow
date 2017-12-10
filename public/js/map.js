@@ -84,6 +84,8 @@ $(function () {
         var jsonText = '{"x":' + position.coords.longitude + ', "y":' + position.coords.latitude + ', "_lat":' + position.coords.latitude + ', "_lng":' + position.coords.latitude + "}";
         var coordObj = JSON.parse(jsonText);
         searchCoordinateToAddress(coordObj);
+
+        // location.reload();
     }
 
     function onErrorGetLocation() {}
@@ -122,13 +124,10 @@ $(function () {
             }
 
             console.log(items);
-            // alert(items[0].addrdetail.sido);
 
             Cookies.set("sido", items[0].addrdetail.sido);
             Cookies.set("sigugun", items[0].addrdetail.sigugun);
             Cookies.set("dongmyun", items[0].addrdetail.dongmyun);
-
-            location.reload();
         });
     }
 });
