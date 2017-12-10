@@ -8,8 +8,8 @@
                 <a href="/" class="list-group-item list-group-item-action ">메인</a>
                 <a href="/trashcan" class="list-group-item list-group-item-action ">쓰레기통 관리</a>
                 <a href="/trashcan/add" class="list-group-item list-group-item-action ">쓰레기통 추가</a>
-                <a href="# " class="list-group-item list-group-item-action ">Porta ac consectetur ac</a>
-                <a href="# " class="list-group-item list-group-item-action disabled ">Vestibulum at eros</a>
+                <a href="/statistic" class="list-group-item list-group-item-action">통계</a>
+                <a href="/setting" class="list-group-item list-group-item-action ">설정</a>
             </div>
         </div>
         <div class="card-footer text-muted ">

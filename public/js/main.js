@@ -100,8 +100,8 @@ $(function () {
 
     function onSuccessGeolocation(position) {
         var location = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
-        map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
+        // map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+        // map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
     }
 
     function onErrorGeolocation() {

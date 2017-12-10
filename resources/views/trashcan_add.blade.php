@@ -66,8 +66,9 @@
         });
 
         naver.maps.Event.addListener(map, 'click', function (e) {
-            $('input[name=latitude]').val(e.coord.x);
-            $('input[name=longitude]').val(e.coord.y);
+            console.log(e);
+            $('input[name=latitude]').val(e.coord.y);
+            $('input[name=longitude]').val(e.coord.x);
             marker.setPosition(e.coord);
         });
     </script>
