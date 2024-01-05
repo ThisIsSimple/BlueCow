@@ -42,7 +42,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [ThisIsSimple/BlueCow](https://github.com/ThisIsSimple/BlueCow)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|23<br/>Tools used|11/30/23 <br/>Report generated|
+|24<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -171,7 +171,7 @@ Full tech stack [here](/techstack.md)
 </table>
 
 
-## <img src='https://img.stackshare.io/group.svg' /> Open source packages (10)</h2>
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (11)</h2>
 
 ## <img width='24' height='24' src='https://img.stackshare.io/package_manager/1778/default_90cb8b66e85ae5b95928b10bb076ab6a27c7e151.png'/> Packagist (7)
 
@@ -186,12 +186,13 @@ Full tech stack [here](/techstack.md)
 |[phpunit/phpunit](https://packagist.org/phpunit/phpunit)|v6.5.3|12/09/17|cordelia273 |N/A|N/A|
 
 
-## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (3)
+## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (4)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
 |[bootstrap-sass](https://www.npmjs.com/bootstrap-sass)|v3.3.7|12/09/17|cordelia273 |MIT|[CVE-2019-8331](https://github.com/advisories/GHSA-9v3m-8fp8-mj99) (Moderate)<br/>[CVE-2019-8331](https://github.com/advisories/GHSA-wh77-3x4m-4q9g) (Moderate)|
 |[cross-env](https://www.npmjs.com/cross-env)|v5.1.1|12/09/17|cordelia273 |MIT|N/A|
+|[laravel-mix](https://www.npmjs.com/laravel-mix)|v1.7.2|12/09/17|cordelia273 |MIT|N/A|
 |[vue](https://www.npmjs.com/vue)|v2.5.9|12/09/17|cordelia273 |MIT|N/A|
 
 <br/>
